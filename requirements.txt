@@ -7,4 +7,4 @@ prophet>=1.0
 cmdstanpy==1.2.4
 Pillow >= 11
 matplotlib
-streamlit==1.26.0
+streamlit
