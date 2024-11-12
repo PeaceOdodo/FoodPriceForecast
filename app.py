@@ -42,7 +42,7 @@ prediction_date = st.date_input("Select Prediction Date", df['price_date'].max()
 # Function to load the model and make a prediction
 def predict(state, food_item, prediction_date):
     # Load the trained model from the serialized JSON file
-    food_item = food_item_name_map[food_item]
+    food_item = food_item_name_map[food_item].upper()
     model_filename = f"prophet_model_{state}_{food_item}.json"
     
     try:
