@@ -72,6 +72,6 @@ if st.button("Predict"):
     
     if prediction is not None:
         st.subheader(f"Prediction for {food_item} in {state} on {prediction_date}")
-        st.write(f"Predicted Price: {round(prediction['yhat'])} (Naira)")
-        st.write(f"Minimum Price Range: {round(prediction['yhat_lower'])} (Naira)")
-        st.write(f"Maximum Price Range: {round(prediction['yhat_upper'])} (Naira)")
+        st.write(f"Predicted Price: {round(prediction['yhat']/5) * 5} (Naira)")
+        st.write(f"Minimum Price Range: {round(prediction['yhat_lower']/5) * 5} (Naira)")
+        st.write(f"Maximum Price Range: {round(prediction['yhat_upper']/5) * 5} (Naira)")
