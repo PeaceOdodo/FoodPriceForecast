@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from prophet import Prophet
 from prophet.serialize import model_to_json, model_from_json
+import base64
 
 # Load the dataset (assuming 'FPAM.csv' is available)
 df = pd.read_csv("FPAM.csv")
@@ -11,6 +12,10 @@ df['price_date'] = pd.to_datetime(df['price_date'])
 
 # Streamlit UI elements
 st.set_page_config(page_title="Food Price Forecasting", layout="centered")
+
+# Convert image to Base64
+with open("agtrade-logo.png", "rb") as image_file:
+    encoded_string = base64.b64encode(image_file.read()).decode("utf-8")
 
 # Custom CSS
 st.markdown("""
