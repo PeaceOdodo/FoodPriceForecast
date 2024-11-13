@@ -55,7 +55,7 @@ st.markdown("""
 st.markdown(
     """
     <div class="title-container">
-        <img src="agtrade-logo.png" alt="Logo">
+        <img src="agtrade-logo.png" alt="">
         Food Price Forecasting
     </div>
     """, unsafe_allow_html=True
