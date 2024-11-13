@@ -96,6 +96,8 @@ with col3:
 def predict(state, food_item, prediction_date):
     # Load the trained model from the serialized JSON file
     food_item = food_item_name_map[food_item].upper()
+    if food_item == "CASSAVA MEAL":
+        food_item == "CASSAVA_MEAL"
     model_filename = f"prophet_model_{state}_{food_item}.json"
     
     try:
