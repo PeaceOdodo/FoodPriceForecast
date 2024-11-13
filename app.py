@@ -15,11 +15,14 @@ st.set_page_config(page_title="Food Price Forecasting", layout="centered")
 # Custom CSS
 st.markdown("""
     <style>
-    /* Custom styles */
-    .main { background-color: #f5f5f5; }
-    .css-10trblm { font-size: 2.5rem; font-weight: bold; color: #6c63ff; }
-    .stButton button { width: 100%; background-color: #6c63ff; color: white; }
-    .prediction-text { font-size: 1.1rem; color: #333; text-align: center; }
+    .stButton > button {
+        background-color: #5A189A; /* Deep purple */
+        color: white;
+        border-radius: 8px;
+        font-weight: bold;
+        height: 50px;
+        width: 100%;
+    }
     </style>
     """, unsafe_allow_html=True)
 
