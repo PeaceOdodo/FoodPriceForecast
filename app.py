@@ -46,7 +46,15 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-st.title("📊 Food Price Forecasting")
+# Title with custom image
+st.markdown(
+    """
+    <div class="title-container">
+        <img src="agtrade-logo.webp" alt="Logo">
+        Food Price Forecasting
+    </div>
+    """, unsafe_allow_html=True
+)
 col1, col2, col3 = st.columns(3)
 with col1:
     state = st.selectbox("Select State", df['state'].unique())
@@ -111,7 +119,8 @@ if st.button("Predict"):
     prediction = predict(state, food_item, prediction_date)
     
     if prediction is not None:
-        st.subheader(f"Prediction for {food_item} in {state} on {prediction_date}")
-        st.write(f"Predicted Price: {round(prediction['yhat']/10) * 10} (Naira)")
-        st.write(f"Minimum Price Range: {round(prediction['yhat_lower']/10) * 10} (Naira)")
-        st.write(f"Maximum Price Range: {round(prediction['yhat_upper']/10) * 10} (Naira)")
+        with st.container():
+            st.markdown(f"<div class='prediction-text'>Prediction for {food_item} in {state} on {prediction_date}</div>", unsafe_allow_html=True)
+            st.write(f"**Predicted Price**: {round(prediction['yhat']/10) * 10} (Naira)")
+            st.write(f"**Minimum Price Range**: {round(prediction['yhat_lower']/10) * 10} (Naira)")
+            st.write(f"**Maximum Price Range**: {round(prediction['yhat_upper']/10) * 10} (Naira)")
