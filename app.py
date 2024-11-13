@@ -10,8 +10,23 @@ df = pd.read_csv("FPAM.csv")
 df['price_date'] = pd.to_datetime(df['price_date'])
 
 # Streamlit UI elements
-st.title("Food Price Forecasting")
-state = st.selectbox("Select State", df['state'].unique())
+st.set_page_config(page_title="Food Price Forecasting", layout="centered")
+
+# Custom CSS
+st.markdown("""
+    <style>
+    /* Custom styles */
+    .main { background-color: #f5f5f5; }
+    .css-10trblm { font-size: 2.5rem; font-weight: bold; color: #6c63ff; }
+    .stButton button { width: 100%; background-color: #6c63ff; color: white; }
+    .prediction-text { font-size: 1.1rem; color: #333; text-align: center; }
+    </style>
+    """, unsafe_allow_html=True)
+
+st.title("📊 Food Price Forecasting")
+col1, col2, col3 = st.columns(3)
+with col1:
+    state = st.selectbox("Select State", df['state'].unique())
 food_items = [
     'Bread (small size)', 
     'Cassava Meal (100 KG)', 
@@ -36,8 +51,10 @@ food_item_name_map = {
     'Rice (50 KG)' : 'Rice', 
     'Maize (100 KG)' : 'Maize' 
 }
-food_item = st.selectbox("Select Food Item", food_items)
-prediction_date = st.date_input("Select Prediction Date", df['price_date'].max())
+with col2:
+    food_item = st.selectbox("Select Food Item", food_items)
+with col3:
+    prediction_date = st.date_input("Select Prediction Date", df['price_date'].max())
 
 # Function to load the model and make a prediction
 def predict(state, food_item, prediction_date):
