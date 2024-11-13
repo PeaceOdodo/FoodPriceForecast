@@ -126,6 +126,6 @@ if st.button("Predict"):
     if prediction is not None:
         with st.container():
             st.markdown(f"<div class='prediction-text'>Prediction for {food_item} in {state} on {prediction_date}</div>", unsafe_allow_html=True)
-            st.write(f"**Predicted Price**: {round(prediction['yhat']/10) * 10} (Naira)")
-            st.write(f"**Minimum Price Range**: {round(prediction['yhat_lower']/10) * 10} (Naira)")
-            st.write(f"**Maximum Price Range**: {round(prediction['yhat_upper']/10) * 10} (Naira)")
+            st.write(f"**Predicted Price**: ₦{round(prediction['yhat']/10) * 10}")
+            st.write(f"**Minimum Price Range**: ₦{round(prediction['yhat_lower']/10) * 10}")
+            st.write(f"**Maximum Price Range**: ₦{round(prediction['yhat_upper']/10) * 10}")
