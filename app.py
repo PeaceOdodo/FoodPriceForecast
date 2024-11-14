@@ -62,7 +62,7 @@ st.markdown(
 )
 col1, col2, col3 = st.columns(3)
 with col1:
-    state = st.selectbox("Select State", list(df['state'].unique()).drop("Market Average"))
+    state = st.selectbox("Select State", df['state'].unique())
 food_items = [
     'Bread (small size)', 
     'Cassava Meal (100 KG)', 
