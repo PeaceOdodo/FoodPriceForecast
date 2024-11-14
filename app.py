@@ -11,7 +11,7 @@ df = pd.read_csv("FPAM.csv")
 df['price_date'] = pd.to_datetime(df['price_date'])
 
 # Streamlit UI elements
-st.set_page_config(page_title="Food Price Forecasting", layout="centered")
+st.set_page_config(page_title="Food Price Forecasting (Next Three Months)", layout="centered")
 
 # Convert image to Base64
 with open("agtrade-logo.png", "rb") as image_file:
@@ -62,7 +62,7 @@ st.markdown(
 )
 col1, col2, col3 = st.columns(3)
 with col1:
-    state = st.selectbox("Select State", df['state'].unique())
+    state = st.selectbox("Select State", list(df['state'].unique()).drop("Market Average"))
 food_items = [
     'Bread (small size)', 
     'Cassava Meal (100 KG)', 
@@ -107,8 +107,17 @@ def predict(state, food_item, prediction_date):
         st.error(f"Model for {state} and {food_item} not found. Please ensure the model is trained and saved.")
         return None
     
-    # Prepare the future DataFrame for prediction
-    future = pd.DataFrame({'ds': [pd.to_datetime(prediction_date)]})
+    # # Prepare the future DataFrame for prediction
+    # future = pd.DataFrame({'ds': [pd.to_datetime(prediction_date)]})
+
+    # Define the start and end dates for the prediction period
+    start_date = '2024-11-01'
+    end_date = '2025-01-01'   
+
+    # Generate a range of dates, limited to the first day of each month
+    future = pd.DataFrame({
+        'ds': pd.date_range(start=start_date, end=end_date, freq='MS')  # 'MS' frequency for Month Start
+    })
     
     # Extend inflation data into the future (using the last known value)
     last_inflation_value = df[df['state'] == state]['inflation_food_price_index'].iloc[-1]
